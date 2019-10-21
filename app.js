@@ -13,14 +13,14 @@ app.get('/weather', function(req, res) {
         const city = req.query.search
         climate.getGeocode(city, function(error, coordinates) {
             if (error) {
-                return res.send({
+                res.send({
                     error: error
                 })
             } else {
                 if (coordinates) {
                     climate.getWeather(coordinates, function(error, weather) {
                         if (error) {
-                            return res.send({
+                            res.send({
                                 error: error
                             })
                         } else {

@@ -44,9 +44,11 @@ const getGeocode = function(city, callback) {
             callback('Not Found', undefined)
         } else {
             const data = response.body
-
+            
             if (data.message) {
                 callback(data.message, undefined)
+            } else if (data.features.length == 0) {
+                callback("Incorrect", undefined)
             } else {
                 const geometry = data.features[0].geometry
                 const coordinates = {
